@@ -23,5 +23,4 @@ else:
 n="{:02d}".format(last_month)
 m= str(n)
 p=bckp+'/'+proyecto+'-'+year+m+'*'
-print(p)
 os.system('rm -f '+p)
