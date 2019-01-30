@@ -1,9 +1,9 @@
-import subprocess,time, os
+import subprocess,time, os, sys
 
 fecha=time.strftime("%Y%m%d-%I%M")
 archivo = fecha+'.sql'
 ###############DATABASE#############################
-database='october'
+database=sys.argv[1]
 user='root'
 password='root'
 ####################################################
@@ -30,3 +30,5 @@ m= str(n)
 p=database+'-'+year+m+'*'
 
 os.system('rm -f '+p)
+
+# --all-databases par ahacer backups de todos
