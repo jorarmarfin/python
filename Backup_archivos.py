@@ -2,9 +2,11 @@ import subprocess,time, os
 
 fecha=time.strftime("%Y%m%d-%I%M")
 archivo = fecha+'.sql'
+###############DATABASE#############################
 database='october'
 user='root'
 password='root'
+####################################################
 archivo=database+'-'+archivo
 dump='mysqldump -u'+user+' -p'+password+' '+database+'>'+archivo
 os.system(dump)
