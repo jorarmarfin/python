@@ -4,8 +4,9 @@ fecha=time.strftime("%Y%m%d-%I%M")
 archivo = fecha+'.sql'
 ###############DATABASE#############################
 database=sys.argv[1]
-user='root'
-password='root'
+user=sys.argv[2]
+password=sys.argv[3]
+carpeta_backup='/home/lmayta'
 ####################################################
 archivo=database+'-'+archivo
 dump='mysqldump -u'+user+' -p'+password+' '+database+'>'+archivo
@@ -14,6 +15,10 @@ os.system(dump)
 #Comprimir
 #usando libreria subprocess
 subprocess.call(['gzip',archivo])
+
+#Moviendo
+subprocess.call(['mv',archivo+'.gz',carpeta_backup])
+
 
 #Limpia Backup
 year=time.strftime("%Y")
