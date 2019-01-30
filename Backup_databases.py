@@ -23,7 +23,7 @@ subprocess.call(['mv',archivo+'.gz',carpeta_backup])
 #Limpia Backup
 year=time.strftime("%Y")
 month=time.strftime("%m")
-if month=='12':
+if month=='01':
     last_month=12
     year= int(year)-1
     year= str(year)
