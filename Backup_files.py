@@ -8,7 +8,7 @@ bckp=sys.argv[3]
 ####################################################
 archivo=bckp+'/'+proyecto+'-'+sufijo+'.tgz'
 #Backup de archivos
-subprocess.call(['tar','-czvf',archivo,org])
+subprocess.call(['tar','-czvf',archivo,'--exclude=*.git','--exclude=*.mysql','--exclude=*.gz','--exclude=*.info',org])
 
 #Limpia Backup
 year=time.strftime("%Y")
