@@ -1,38 +1,28 @@
 import subprocess,time, os, sys
 
-def limpia(r1,archivo):
-    #Limpia Backup
-    y=time.strftime("%Y")
-    m=time.strftime("%m")
-    d=time.strftime("%d")
-    # y='2019'
-    # m='01'
-    # d='19'
+def limpia(r1,archivo,r2,ext,fecha):
+    if fecha==1:
+        #Limpia Backup
+        y=time.strftime("%Y")
+        m=time.strftime("%m")
+        d=time.strftime("%d")
+        tmp1=int(d) -1
+        tmp2="{:02d}".format(tmp1)
+        a1=archivo+y+'-'+m+'-'+tmp2+ext
+    else:
+        a1=archivo+ext
 
-    tmp1=int(d) -1
-    tmp2="{:02d}".format(tmp1)
-    a1=archivo+y+'-'+m+'-'+tmp2
     os.system('gzip '+r1+a1)
-    os.system('mv '+r1+'*.gz /ins500/Backup/dspace-cientifico/logs')
-def limpiad(r1,archivo,d):
+    os.system('mv '+r1+'*.gz '+r2)
+
+def limpiad(r1,archivo,ext,r2,y,m,d,g1,g2):
     #Limpia Backup
-    # y=time.strftime("%Y")
-    # m=time.strftime("%m")
-    # d=time.strftime("%d")
-    y='2019'
-    m='01'
-
-    tmp1=int(d) -1
-    tmp2="{:02d}".format(tmp1)
-    a1=archivo+y+'-'+m+'-'+tmp2
-    print(a1)
-    os.system('gzip '+r1+a1)
-    os.system('mv '+r1+'*.gz /ins500/Backup/dspace-cientifico/logs')
-
-limpia('/var/lib/docker/volumes/dspace5institucional_dspace/_data/log/','cocoon.log.')
-limpia('/var/lib/docker/volumes/dspace5institucional_dspace/_data/log/','dspace.log.')
-limpia('/var/lib/docker/volumes/dspace5institucional_dspace/_data/log/','solr.log.')
-
-# for x in range(5,30):
-#     i="{:02d}".format(x)
-#     limpiad('/var/lib/docker/volumes/dspace5institucional_dspace/_data/log/','cocoon.log.',i)
+    for x in range(g1,g2):
+        tmp2="{:02d}".format(x)
+        a1=archivo+y+'-'+m+'-'+tmp2+ext
+        os.system('gzip '+r1+a1)
+        os.system('mv '+r1+'*.gz '+r2)
+#Ejemplo
+#limpia('/home/lmayta/Phyton/','pp','/home/lmayta/','.txt',0)
+#Ejemplo
+#limpiad('/home/lmayta/Phyton/','pp','.txt','/home/lmayta/','2019','01',5,30)
