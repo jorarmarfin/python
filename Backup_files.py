@@ -4,8 +4,7 @@ def backup(archivo,ruta,destino,opcion):
     if opcion=='generate':
         fecha=time.strftime("%Y%m%d-%I%M")
         bckp=destino+'/'+archivo+'-'+fecha+'.tgz'
-        os.system('cd '+ruta)
-        subprocess.call(['tar','-czvf',bckp,'--exclude=*.git','--exclude=*.mysql','--exclude=*.gz','--exclude=*.info',archivo])
+        os.system('tar -czvf '+bckp+' -C '+ruta+' '+archivo)
     else:
         #Limpia Backup
         year=time.strftime("%Y")
@@ -23,9 +22,13 @@ def backup(archivo,ruta,destino,opcion):
         os.system('rm -f '+p)
 
 archivo=sys.argv[1]
-ruta=sys.argv[2]
-destino=sys.argv[3]
-opcion=sys.argv[4]
-#Ejemplo
-#backup('pp.txt','/home/lmayta/Phyton','/home/lmayta')
-backup(archivo,ruta,destino,opcion)
+
+if archivo=='help':
+    print(chr(27)+"[1;33m"+"El script recibe los siquientes parametros: archivo,ruta,destino,opcion[generate,clean]")
+    print(chr(27)+"[0;37m"+"generate: crea el backup")
+    print('clean: limpia los backups de un mes anterior')
+else:
+    ruta=sys.argv[2]
+    destino=sys.argv[3]
+    opcion=sys.argv[4]
+    backup(archivo,ruta,destino,opcion)

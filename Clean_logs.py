@@ -12,7 +12,7 @@ def limpia(r1,archivo,r2,ext,fecha):
     else:
         a1=archivo+ext
 
-    os.system('gzip '+r1+a1)
+    
     os.system('mv '+r1+'*.gz '+r2)
 
 def limpiad(r1,archivo,ext,r2,y,m,d,g2):
