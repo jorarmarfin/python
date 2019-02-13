@@ -26,12 +26,17 @@ def backup(database,destino,user,opcion):
         os.system('rm -f '+p)
     else:
         print('')
-        
+
 database=sys.argv[1]
-destino=sys.argv[2]
-user=sys.argv[3]
-opcion=sys.argv[4]
-backup(database,destino,user,opcion)
+if database=='help':
+    print(chr(27)+"[0;33m"+"El script recibe los siquientes parametros: database,destino,user,opcion[generate,clean]")
+    print(chr(27)+"[0;37m"+"generate: crea el backup")
+    print('clean: limpia los backups de un mes anterior')
+else:
+    destino=sys.argv[2]
+    user=sys.argv[3]
+    opcion=sys.argv[4]
+    backup(database,destino,user,opcion)
 
 # --all-databases par ahacer backups de todos
 

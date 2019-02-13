@@ -24,7 +24,7 @@ def backup(archivo,ruta,destino,opcion):
 archivo=sys.argv[1]
 
 if archivo=='help':
-    print(chr(27)+"[1;33m"+"El script recibe los siquientes parametros: archivo,ruta,destino,opcion[generate,clean]")
+    print(chr(27)+"[0;33m"+"El script recibe los siquientes parametros: archivo,ruta,destino,opcion[generate,clean]")
     print(chr(27)+"[0;37m"+"generate: crea el backup")
     print('clean: limpia los backups de un mes anterior')
 else:
