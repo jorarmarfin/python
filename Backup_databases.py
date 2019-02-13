@@ -1,39 +1,41 @@
 import subprocess,time, os, sys
 
-fecha=time.strftime("%Y%m%d-%I%M")
-archivo = fecha+'.sql'
-###############DATABASE#############################
+def backup(database,destino,user,opcion):
+    if opcion=='generate':
+        fecha=time.strftime("%Y%m%d-%I%M")
+        bckp = database+'-'+fecha+'.sql'
+        dump='mysqldump -u'+user+' '+database+'>'+bckp
+        os.system(dump)
+        os.system('gzip '+bckp)
+        os.system('mv '+bckp+'.gz'+' '+destino)
+    elif opcion=='clean':
+        #Limpia Backup
+        year=time.strftime("%Y")
+        month=time.strftime("%m")
+        if month=='01':
+            last_month=12
+            year= int(year)-1
+            year= str(year)
+        else:
+            last_month= int(month)-1
+
+        n="{:02d}".format(last_month)
+        m= str(n)
+        p=destino+'/'+database+'-'+year+m+'*'
+
+        os.system('rm -f '+p)
+    else:
+        print('')
+        
 database=sys.argv[1]
-user=sys.argv[2]
-password=sys.argv[3]
-carpeta_backup='/home/lmayta'
-####################################################
-archivo=database+'-'+archivo
-dump='mysqldump -u'+user+' -p'+password+' '+database+'>'+archivo
-os.system(dump)
-
-#Comprimir
-#usando libreria subprocess
-subprocess.call(['gzip',archivo])
-
-#Moviendo
-subprocess.call(['mv',archivo+'.gz',carpeta_backup])
-
-
-#Limpia Backup
-year=time.strftime("%Y")
-month=time.strftime("%m")
-if month=='01':
-    last_month=12
-    year= int(year)-1
-    year= str(year)
-else:
-    last_month= int(month)-1
-
-n="{:02d}".format(last_month)
-m= str(n)
-p=database+'-'+year+m+'*'
-
-os.system('rm -f '+p)
+destino=sys.argv[2]
+user=sys.argv[3]
+opcion=sys.argv[4]
+backup(database,destino,user,opcion)
 
 # --all-databases par ahacer backups de todos
+
+# GRANT LOCK TABLES, SELECT ON *.* TO 'drinuxbackup'@'%' IDENTIFIED BY '76df9659334938af62378811369fc332';
+# [mysqldump]
+# user=drinuxbackup
+# password=76df9659334938af62378811369fc332
