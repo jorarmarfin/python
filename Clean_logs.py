@@ -15,9 +15,9 @@ def limpia(r1,archivo,r2,ext,fecha):
     os.system('gzip '+r1+a1)
     os.system('mv '+r1+'*.gz '+r2)
 
-def limpiad(r1,archivo,ext,r2,y,m,d,g1,g2):
+def limpiad(r1,archivo,ext,r2,y,m,d,g2):
     #Limpia Backup
-    for x in range(g1,g2):
+    for x in range(d,g2):
         tmp2="{:02d}".format(x)
         a1=archivo+y+'-'+m+'-'+tmp2+ext
         os.system('gzip '+r1+a1)
