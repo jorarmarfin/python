@@ -7,8 +7,8 @@ db = pymysql.connect(host=v_host, user=v_user,passwd=v_pass, db=v_db)
 cursor = db.cursor()
 #Variable
 recs=cursor.execute("SELECT * FROM movimiento limit 1")
-for x in range(recs):
-   print(cursor.fetchone())
+# for x in range(recs):
+#    print(cursor.fetchone())
 #Indirectamente
 for row in cursor:
-   print(row)
+   print(row[0])
