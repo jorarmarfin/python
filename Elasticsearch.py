@@ -17,4 +17,13 @@ def creaindex():
     
     print(i)
 
-creaindex()
+def createindex(es):
+    doc = {
+        'author': 'kimchy',
+        'text': 'Elasticsearch: cool. bonsai cool.',
+        'timestamp': datetime.now(),
+    }
+    res = es.index(index="test-index", doc_type='tweet', id=1, body=doc)
+    print(res['result'])
+
+createindex(es)
