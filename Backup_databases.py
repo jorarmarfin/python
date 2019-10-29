@@ -40,7 +40,9 @@ else:
 
 # --all-databases par ahacer backups de todos
 
+# CREATE USER 'drinuxbackup'@'%' IDENTIFIED BY '76df9659334938af62378811369fc332';
 # GRANT LOCK TABLES, SELECT ON *.* TO 'drinuxbackup'@'%' IDENTIFIED BY '76df9659334938af62378811369fc332';
+# FLUSH PRIVILEGES;
 # [mysqldump]
 # user=drinuxbackup
 # password=76df9659334938af62378811369fc332

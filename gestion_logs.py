@@ -1,6 +1,6 @@
 import os,sys
 # First go to the "/var/www/html" directory
-os.chdir("/var/www/html" )
+#os.chdir("/var/www/html" )
 
 # detect the current working directory
 path = os.getcwd()
