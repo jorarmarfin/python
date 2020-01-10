@@ -11,12 +11,12 @@ msg = MIMEMultipart()
 message = "Test de envio de emails 3"
  
 # setup the parameters of the message
-# server = smtplib.SMTP('mail.smtp2go.com')
-# user = "developer@gmail.com"
-# password = "YzBpZHJwZ2k1c2Yw"
-server = smtplib.SMTP('mailserver.ins.gob.pe')
-user = "repositorio@ins.gob.pe"
-password = "R3p0s1t0r102i19"
+server = smtplib.SMTP('mail.smtp2go.com')
+user = "info@catolicosoy.net"
+password = "YnI5anZxZmp5bHQw"
+# server = smtplib.SMTP('mailserver.ins.gob.pe')
+# user = "repositorio@ins.gob.pe"
+# password = "R3p0s1t0r102i19"
 
 msg['From'] = "luis.mayta@gmail.com"
 msg['To'] = "luis.mayta@drinux.com"
